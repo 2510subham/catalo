@@ -5,8 +5,8 @@ import Catalogue from '../components/Catalogue'
 const Layout = () => {
   return (
     <>
-        <Header/>
-        
+      <Header />
+
     </>
   )
 }

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import PieChart from './PieChart';
 
-const Catalogue = ({ product,category }) => {
+const Catalogue = ({ product, category }) => {
     const [prod, setProduct] = useState([]);
-    const [totalProd,settotalProd]=useState([]);
+    const [totalProd, settotalProd] = useState([]);
 
 
     console.log(product);
@@ -11,27 +11,16 @@ const Catalogue = ({ product,category }) => {
         async function fetchData1() {
             const res1 = await fetch(`https://fakestoreapi.com/products/category/${product}`);
             const data1 = await res1.json();
-            // console.log(data1);
             setProduct(data1);
         }
         fetchData1();
     }, [product]);
 
-    const showchart =async () => {
-        const res=await fetch("https://fakestoreapi.com/products");
-        const data1=await res.json();
-        console.log(data1);
+    const showchart = async () => {
+        const res = await fetch("https://fakestoreapi.com/products");
+        const data1 = await res.json();
         settotalProd(data1);
-        <PieChart label={category} data1={totalProd}/>
-
-    }
-    const data={
-        labels:category,
-        datasets:[
-            {
-                data:totalProd,
-            }
-        ]
+        <PieChart label={category} data1={totalProd} />
 
     }
     return (
@@ -40,7 +29,7 @@ const Catalogue = ({ product,category }) => {
                 <div className="row">
 
                     {
-                        prod.map((item,keys) => {
+                        prod.map((item, keys) => {
                             return (
                                 <div className='col md-3 mt-4' key={keys}>
 
@@ -58,13 +47,13 @@ const Catalogue = ({ product,category }) => {
                     }
                     <div className="col-md-12 d-flex justify-content-end">
                         <button className="btn btn-primary btn-lg mb-4" onClick={showchart}>Analize</button>
-                        
-                        
+
+
                     </div>
                 </div>
-                
+
             </div>
-            
+
         </>
     )
 }
